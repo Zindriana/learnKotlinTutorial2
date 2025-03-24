@@ -4,14 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.tutorial2_android.ui.theme.Tutorial2_androidTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,33 +15,29 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Tutorial2_androidTheme {
-                val num1 = 2
-                val num2 = 2
-                Main(num1, num2)
+                val color = "Green"
+                trafficLight(color)
             }
         }
     }
 }
 
 @Composable
-fun Main(num1: Int, num2: Int) {
-    if(num1 < num2){
-        Text(
-            text = "True",
-            color = Color(0xFF3ddc84)
-        )
-    }
-    else if(num1 > num2){
-        Text(
-            text = "False",
-            color = Color(0xFF44bb00)
-        )
-    }
-    else {
-        Text(
-            text = "Equal",
-            color = Color(0xFF44bb00)
-        )
+fun trafficLight(color: String) {
+    when(color) {
+        "Red" -> Signal("Stop", Color.Red)
+        "Yellow" -> Signal("Slow", Color.Yellow)
+        "Green" -> Signal("Go", Color.Green)
+        else -> Signal("Invalid traffic-light color", Color.Gray)
     }
 }
+
+@Composable
+fun Signal(message: String, color: Color) {
+    Text(
+        text = message,
+        color = color
+    )
+}
+
 
