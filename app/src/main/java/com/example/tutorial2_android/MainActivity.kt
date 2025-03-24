@@ -22,8 +22,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             Tutorial2_androidTheme {
 
-                val color = "green"
-                val number = 11
+                val color:String = "green"
+                val number:Int = 11
                 Column(
                     modifier = Modifier.padding(
                         WindowInsets.systemBars
